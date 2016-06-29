@@ -1,0 +1,7 @@
+<%= @note.text %>
+<!-- <a class="btn btn-danger" href="/notes/<%= @note.id %>/edit">Edit</a> -->
+<%= link_to "Edit", edit_notepad_path(@note), class: "btn btn-danger" %>
+<!-- <a href="<%= @note.url %>"><img src="<%= @note.imageurl %>"/></a> -->
+<%= link_to @note.url do %>
+  <%= image_tag @note.imageurl %>
+<% end %>

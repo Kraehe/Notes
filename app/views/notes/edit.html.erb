@@ -1,0 +1,13 @@
+<%#= form_for @note, url: notepad_path(@note) do |f| %>
+<%= form_for @note, :url => notepad_path(@note) do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :text, class: "form-control" %><br>
+    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+  </div>
+  <%= f.label :url %>
+  <%= f.text_field :url %><br>
+  <%= f.label :imageurl %>
+  <%= f.text_field :imageurl %><br>
+  <%= f.submit class:"btn btn-danger" %>
+<% end %>

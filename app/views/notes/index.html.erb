@@ -1,0 +1,13 @@
+<table class="table table-striped" style="width: 300px">
+  <tr>
+    <td>Title</td>
+    <td>Text</td>
+  </tr>
+  <% @notes.each do |note| %>
+    <tr>
+      <td>Note</td>
+      <td><%= note.text %></td>
+    </tr>
+  <% end %>
+</table>
+<div class="btn btn-danger">New Note</div>
