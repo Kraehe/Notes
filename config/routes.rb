@@ -7,10 +7,13 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   get 'notes' => 'notes#index'
+  get 'notes/new' => 'notes#new', as: 'new_notepad'
+  get 'notes/search' => 'notes#search', as: "search_notepad"
   get 'notes/:id' => "notes#show", as: 'note'
   get 'notes/:id/edit' => 'notes#edit', as: 'edit_notepad'
+  post 'notes/new' => 'notes#create'
+  post 'notes/search' => 'notes#searchbutton'
   patch 'notes/:id' => 'notes#update', as: 'notepad'
-  post 'notes/:id' => 'notes#update'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

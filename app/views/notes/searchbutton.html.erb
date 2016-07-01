@@ -1,0 +1,15 @@
+<h2>Search Results</h2>
+<table class="table table-striped" style="width: 300px">
+  <tr>
+    <td>Title</td>
+    <td>Text</td>
+    <td></td>
+  </tr>
+  <% @search.each do |search| %>
+    <tr>
+      <td>Note</td>
+      <td><%= search.text %></td>
+      <td><%= link_to "View Note", notepad_path(search), class: "btn btn-danger" %></td>
+    </tr>
+  <% end %>
+</table>
