@@ -1,19 +1,24 @@
 Rails.application.routes.draw do
+  resources :folders do
+    resources :notes
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'notes#index'
+  root 'folders#index'
 
   # Example of regular route:
-  get 'notes' => 'notes#index'
-  get 'notes/new' => 'notes#new', as: 'new_notepad'
+  # get 'notes' => 'notes#index'
+  # get 'folder/:id/notes/new' => 'notes#new', as: 'new_notepad'
   get 'notes/search' => 'notes#search', as: "search_notepad"
-  get 'notes/:id' => "notes#show", as: 'note'
-  get 'notes/:id/edit' => 'notes#edit', as: 'edit_notepad'
-  post 'notes/new' => 'notes#create'
+  # get 'notes/:id' => "notes#show", as: 'note'
+  # get 'notes/:id/edit' => 'notes#edit', as: 'edit_notepad'
+  # post 'notes/new' => 'notes#create'
   post 'notes/search' => 'notes#searchbutton'
-  patch 'notes/:id' => 'notes#update', as: 'notepad'
+  # patch 'notes/:id' => 'notes#update', as: 'notepad'
+  # delete 'notes/:id' => 'notes#destroy', as: 'destroy_notepad'
+
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

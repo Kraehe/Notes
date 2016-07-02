@@ -11,17 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160629191305) do
+ActiveRecord::Schema.define(version: 20160701175824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "folders", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image_url"
+    t.text     "desc"
+    t.boolean  "visible"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "notepads", force: :cascade do |t|
     t.text     "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "url"
-    t.string   "imageurl"
+    t.string   "status"
+    t.integer  "folder_id"
   end
 
+  add_index "notepads", ["folder_id"], name: "index_notepads_on_folder_id", using: :btree
+
+  add_foreign_key "notepads", "folders"
 end

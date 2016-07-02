@@ -1,20 +1,14 @@
 <!-- <a class="btn btn-danger" href="/notes/<%= @note.id %>/edit">Edit</a> -->
-<!-- <a href="<%= @note.url %>"><img src="<%= @note.imageurl %>"/></a> -->
-
 
 <table class="table table-striped" style="width: 300px">
   <tr>
     <td>Title</td>
     <td>Text</td>
-    <td>Image</td>
     <td></td>
   </tr>
   <tr>
     <td>Note</td>
     <td><%= @note.text %></td>
-    <td><%= link_to @note.url do %>
-        <%= image_tag @note.imageurl, width: "50px" %>
-    <% end %></td>
-    <td><%= link_to "Edit", edit_notepad_path(@note), class: "btn btn-danger" %></td>
+    <td><%= link_to "Edit", edit_folder_note_path, class: "btn btn-danger" %></td>
   </tr>
 </table>

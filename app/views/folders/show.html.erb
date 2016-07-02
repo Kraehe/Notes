@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @folder.name %>
+</p>
+
+<p>
+  <strong>Image url:</strong>
+  <%= @folder.image_url %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @folder.desc %>
+</p>
+
+<p>
+  <strong>Visible:</strong>
+  <%= @folder.visible %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <ul><% @folder.notepads.each do |note| %>
+    <li><%= note.text %></li>
+  <% end %></ul>
+
+</p>
+
+<%= link_to 'Edit', edit_folder_path(@folder) %> |
+<%= link_to 'Back', folders_path %>
