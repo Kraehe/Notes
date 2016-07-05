@@ -3,7 +3,7 @@
  <ul><% @note.errors.full_messages.each do |error| %>
   <li><%= error %></li>
 <% end %></ul>
- <%= form_for @note, :url => new_notepad_path(@note) do |f| %>
+ <%= form_for @note, :url => new_folder_note_path do |f| %>
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :text, class: "form-control" %><br>

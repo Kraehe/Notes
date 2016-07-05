@@ -1,5 +1,3 @@
-<%= params[:folder_id] %>
-
  <table class="table table-striped" style="width: 300px">
   <tr>
     <td>Title</td>
@@ -12,7 +10,7 @@
     <td>Note</td>
     <td><%= note.text %></td>
     <td><%= link_to "View Note", folder_note_path(params[:folder_id], note), class: "btn btn-danger" %></td>
-    <td><%#= link_to 'Delete', folder_note_path(:folder_id, :id), method: :delete, data: { confirm: "Are you sure you want to delete this note?"}, class: "btn btn-danger" %></td>
+    <td><%= link_to 'Delete', folder_note_path(params[:folder_id], note), method: :delete, data: { confirm: "Are you sure you want to delete this note?"}, class: "btn btn-danger" %></td>
 
   </tr>
   <% end %>

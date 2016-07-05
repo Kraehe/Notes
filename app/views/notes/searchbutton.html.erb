@@ -9,7 +9,7 @@
     <tr>
       <td>Note</td>
       <td><%= search.text %></td>
-      <td><%= link_to "View Note", notepad_path(search), class: "btn btn-danger" %></td>
+      <td><%= link_to "View Note", folder_note_path(params[:folder_id], search), class: "btn btn-danger" %></td>
     </tr>
   <% end %>
 </table>

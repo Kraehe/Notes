@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <strong>Image url:</strong>
-  <%= @folder.image_url %>
+  <strong>Image:</strong>
+  <img src="<%= @folder.image_url %>" width="50px"/>
 </p>
 
 <p>
@@ -23,7 +23,7 @@
 <p>
   <strong>Notes:</strong>
   <ul><% @folder.notepads.each do |note| %>
-    <li><%= note.text %></li>
+    <li><%= link_to note.text, folder_notes_path(@folder) %></li>
   <% end %></ul>
 
 </p>

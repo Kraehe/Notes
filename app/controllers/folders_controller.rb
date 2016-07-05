@@ -4,7 +4,16 @@ class FoldersController < ApplicationController
   # GET /folders
   # GET /folders.json
   def index
-    @folders = Folder.all
+    # .visible is NOT the visible parameter.
+    # If the parameter 'visible' is true, then it will display all visible folders.
+    # If 'visible' is false, then it will display all hidden folders.
+    # current_user = User.first
+    # current_user.folders
+    if params[:visible] == "true"
+      @folders = current_user.folders.visible
+    else
+      @folders = current_user.folders.hidden
+    end
   end
 
   # GET /folders/1
@@ -14,7 +23,7 @@ class FoldersController < ApplicationController
 
   # GET /folders/new
   def new
-    @folder = Folder.new
+    @folder = current_user.folders.new
   end
 
   # GET /folders/1/edit
@@ -24,7 +33,7 @@ class FoldersController < ApplicationController
   # POST /folders
   # POST /folders.json
   def create
-    @folder = Folder.new(folder_params)
+    @folder = current_user.folders.new(folder_params)
 
     respond_to do |format|
       if @folder.save
@@ -64,11 +73,11 @@ class FoldersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_folder
-      @folder = Folder.find(params[:id])
+      @folder = current_user.folders.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def folder_params
-      params.require(:folder).permit(:name, :image_url, :desc, :visible)
+      params.require(:folder).permit!
     end
 end

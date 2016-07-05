@@ -1,4 +1,7 @@
 <%#= form_for @note, url: notepad_path(@note) do |f| %>
+<ul><% @note.errors.full_messages.each do |error| %>
+ <li><%= error %></li>
+<% end %></ul>
 <%= form_for @note, :url => folder_note_path do |f| %>
   <div class="form-group">
     <%= f.label :name %>

@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
+  devise_scope :user do
+  get 'sign_out', to: 'devise/sessions#destroy'
+end
+get 'folders/:folder_id/notes/search' => 'notes#search', as: "search_notepad"
+
   resources :folders do
     resources :notes
   end
@@ -11,11 +17,11 @@ Rails.application.routes.draw do
   # Example of regular route:
   # get 'notes' => 'notes#index'
   # get 'folder/:id/notes/new' => 'notes#new', as: 'new_notepad'
-  get 'notes/search' => 'notes#search', as: "search_notepad"
   # get 'notes/:id' => "notes#show", as: 'note'
   # get 'notes/:id/edit' => 'notes#edit', as: 'edit_notepad'
   # post 'notes/new' => 'notes#create'
-  post 'notes/search' => 'notes#searchbutton'
+  post 'folders/:folder_id/notes/new' => 'notes#create'
+  post 'folders/:folder_id/notes/search' => 'notes#searchbutton'
   # patch 'notes/:id' => 'notes#update', as: 'notepad'
   # delete 'notes/:id' => 'notes#destroy', as: 'destroy_notepad'
 

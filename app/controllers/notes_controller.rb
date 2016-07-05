@@ -1,48 +1,58 @@
 class NotesController < ApplicationController
+  before_action :set_note, only: [:show, :edit, :update, :destroy]
    def index
-     @notes = Folder.find(params[:folder_id]).notepads
+     @notes = current_user.folders.find(params[:folder_id]).notepads
    end
 
    def searchbutton
     # redirect_to search_result_notepad_path(:text)
     # render text: "#{Notepad.where("text ilike ?", "%#{params[:quy]}%").inspect}"
-    @search = Notepad.where("text ilike ?", "%#{params[:query]}%")
+    @folder = current_user.folders.find(params[:folder_id])
+    @search = @folder.notepads.where("text ilike ?", "%#{params[:query]}%")
    end
 
    def show
-     @folder = Folder.find(params[:folder_id])
-     @note = Notepad.find(params[:id])
    end
 
    def edit
-     @note = Notepad.find(params[:id])
+
    end
 
    def note_params
-     params.required(:notepad).permit!
+     params.require(:notepad).permit!
    end
 
    def update
-     @note = Notepad.find(params[:id])
-     @note.update(note_params)
-     redirect_to notepad_path
+     if  @note.update(note_params)
+       redirect_to folder_note_path
+     else
+       render :edit
+     end
    end
 
    def new
-     @note = Folder.find(params[:folder_id]).notepads.build
+     @folder = current_user.folders.find(params[:folder_id])
+     @note = @folder.notepads.new
    end
 
   def destroy
-    @note = Notepad.destroy(params[:id])
-    redirect_to notes_path
+    @note.destroy
+    redirect_to folder_notes_path
   end
 
    def create
-     @note = Notepad.new(note_params)
+     @folder = current_user.folders.find(params[:folder_id])
+     @note = @folder.notepads.new(note_params)
      if @note.save
-       redirect_to notes_path
+       redirect_to folder_note_path(params[:folder_id], @note)
      else
        render :new
      end
    end
+   private
+     # Use callbacks to share common setup or constraints between actions.
+     def set_note
+       @folder = current_user.folders.find(params[:folder_id])
+       @note = @folder.notepads.find(params[:id])
+     end
  end
