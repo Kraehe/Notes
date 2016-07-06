@@ -69,7 +69,7 @@ class FoldersController < ApplicationController
   def destroy
     @folder.destroy
     respond_to do |format|
-      format.html { redirect_to folders_url, notice: 'Folder was successfully destroyed.' }
+      format.html { redirect_to folders_path, notice: 'Folder was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -6,8 +6,8 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Image</th>
-      <th>Desc</th>
+      <th></th>
+      <th>Description</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,7 +19,7 @@
         <td><img src="<%= folder.image_url %>" width="30px" height="30px"/></td>
         <td><%= folder.desc %></td>        <td><%= link_to 'Show', folder %></td>
         <td><%= link_to 'Edit', edit_folder_path(folder) %></td>
-        <td><%= link_to 'Destroy', folder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', folder, method: :delete, data: { confirm: 'Are you sure you want to delete this folder?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -31,4 +31,4 @@
 <% else %>
   <a href="/?visible=true">Show Visible</a>
 <% end %>
-<%= link_to 'New Folder', new_folder_path %>
+| <%= link_to 'New Folder', new_folder_path %>
