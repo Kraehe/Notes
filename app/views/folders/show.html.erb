@@ -19,14 +19,18 @@
   <strong>Visible:</strong>
   <%= @folder.visible %>
 </p>
-
+<% if @notes && @notes.any? %>
 <p>
-  <strong>Notes:</strong>
+  <strong><%= link_to 'Notes:', folder_notes_path(params[:id]) %></strong>
   <ul><% @folder.notepads.each do |note| %>
-    <li><%= link_to note.text, folder_notes_path(@folder) %></li>
+    <li><%= link_to note.text, folder_note_path(@folder, note) %></li>
   <% end %></ul>
-
 </p>
-
+<% else %>
+<p> You have no notes! </p>
+<%= link_to 'Make a note', new_folder_note_path(params[:id]), class: "btn btn-danger" %><br>
+<% end %>
+Created <%= time_ago_in_words(@folder.created_at) %> ago
+<br>
 <%= link_to 'Edit', edit_folder_path(@folder) %> |
 <%= link_to 'Back', folders_path %>

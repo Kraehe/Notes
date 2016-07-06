@@ -10,7 +10,9 @@ class FoldersController < ApplicationController
     # current_user = User.first
     # current_user.folders
     if params[:visible] == "true"
-      @folders = current_user.folders.visible
+      page = params[:page] || 1
+      per = params[:per] || 50
+      @folders = current_user.folders.visible.page(page).per(per)
     else
       @folders = current_user.folders.hidden
     end
@@ -19,6 +21,8 @@ class FoldersController < ApplicationController
   # GET /folders/1
   # GET /folders/1.json
   def show
+    @folder = current_user.folders.find(params[:id])
+    @notes = @folder.notepads
   end
 
   # GET /folders/new
