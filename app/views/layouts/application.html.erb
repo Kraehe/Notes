@@ -7,13 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <a class="title text-danger" href="/">Notes</a><br>
+  <a class="title text-danger" href="/">Notes</a>
+<span style="margin-left: 50%">
   <% if user_signed_in? %>
-  <%= link_to 'Log out', destroy_user_session_path, method: :delete, class:"btn btn-danger" %>
+    <%= link_to 'Log out', destroy_user_session_path, method: :delete, class:"btn btn-danger" %>
   <% else %>
-  <%= link_to 'Log in', new_user_session_path, class:"btn btn-danger" %>
-  <%= link_to 'Sign Up', new_user_registration_path, class:"btn btn-danger" %>
+    <span>
+      <%= link_to 'Log in', new_user_session_path, class:"btn btn-danger" %>
+      <%= link_to 'Sign Up', new_user_registration_path, class:"btn btn-danger" %>
+    </span>
   <% end %>
+</span>
 <%= yield %>
 
 </body>
