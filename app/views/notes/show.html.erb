@@ -2,13 +2,14 @@
 
 <table class="table table-striped" style="width: 300px">
   <tr>
-    <td>Title</td>
-    <td>Text</td>
+    <td><%= @folder.name %></td>
+    <td>Note</td>
     <td></td>
   </tr>
   <tr>
-    <td>Note</td>
+    <td></td>
     <td><%= @note.text %></td>
     <td><%= link_to "Edit", edit_folder_note_path, class: "btn btn-danger" %></td>
   </tr>
 </table>
+<%= link_to "All Notes", folder_notes_path, class: "btn btn-danger" %>
